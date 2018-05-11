@@ -33,6 +33,8 @@ sudo make all
 Since there is a reboot command after each step in the installation, you will have to run the following commands once the system reboots.
 `cd ~/setup && sudo make 2` and `cd ~/setup && sudo make 3` after the second reboot.
 
+Alternatively, if you are looking to only add our packages to a catkin workspace named *catkin_ws* without having to copy and paste all of the folders, you can run `make packages` and they will be copied over "auto-magically" for you. If you already have a workspace called *catkin_ws* it will not delete any of the packages you already have in there. If you do not have a workspace named *catkin_ws* then the command will make one for you, assuming you have all the necessary software installed already.
+
 ## Package Information
 Each folder in this section is a self-contained rospackage. Copying one of the folders into the _src_ folder of your workspace and running `catkin_make` will allow you to use the package. For your convenience, running the setup code will copy all of the packages into a catkin workspace labeld _catkin_ws_ in your home directory. For information about each package, read below.
 
