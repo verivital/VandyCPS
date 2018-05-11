@@ -5,9 +5,9 @@ Hello and welcome to our repository! This repo was built for the Vanderbilt team
 The team consists of the following members and was led by Nate Hamilton
 Graduate Students: <br />
 Ran Hao <br />
-Patrick Musau
-**PLEASE ADD YOUR NAMES**
-Undergraduate Students: **PLEASE ADD YOUR NAMES**
+Patrick Musau <br />
+**PLEASE ADD YOUR NAMES** <br />
+Undergraduate Students: <br /> **PLEASE ADD YOUR NAMES**
 
 Hopefully you won't get too lost as I try to explain how this is set up.
 
