@@ -2,13 +2,13 @@
 Hello and welcome to our repository! This repo was built for the Vanderbilt team competitng in the 2018 NSF Student CPS Challenge
 "No robot left behind!" (more information about the competition can be found at this site: [https://cps-vo.org/group/CPSchallenge.](https://cps-vo.org/group/CPSchallenge "2018 NSF Student CPS Challenge")
 
-The team consists of the following members and was led by Nate Hamilton <br />
-Graduate Students: <br />
+The team consists of the following members led by Nate Hamilton <br />
+__Graduate Students:__ <br />
 Nate Hamilton <br />
 Ran Hao <br />
 Patrick Musau <br />
 **PLEASE ADD YOUR NAMES** <br />
-Undergraduate Students: <br /> 
+__Undergraduate Students:__ <br /> 
 **PLEASE ADD YOUR NAMES**
 
 Hopefully you won't get too lost as I try to explain how this is set up.
@@ -37,4 +37,7 @@ Since there is a reboot command after each step in the installation, you will ha
 Each folder in this section is a self-contained rospackage. Copying one of the folders into the _src_ folder of your workspace and running `catkin_make` will allow you to use the package. For your convenience, running the setup code will copy all of the packages into a catkin workspace labeld _catkin_ws_ in your home directory. For information about each package, read below.
 
 ### flight_test
-This is a simple test we used for making sure the navigation controller worked. The drone should fly up 1.5m into the air, do a tight square with 0.1m side lengths, and then land.
+This is a simple test we used for making sure the navigation controller worked. The drone should fly up 1.5m into the air, fly in a square with 3m side lengths, and then land. We created this to test the validity of our navigation system/method.
+
+### flight_test_faster
+As the name implies, this test will do the same thing as **flight_test** but at an increased speed. We created this to test how well we can manipulate the velocity of the drone.
