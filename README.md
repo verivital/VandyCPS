@@ -4,7 +4,7 @@ Hello and welcome to our repository! This repo was built for the Vanderbilt team
 
 The team consists of the following members and was led by Nate Hamilton
 Graduate Students: 
-Ran Hao
+Ran Hao <br />
 Patrick Musau
 **PLEASE ADD YOUR NAMES**
 Undergraduate Students: **PLEASE ADD YOUR NAMES**
