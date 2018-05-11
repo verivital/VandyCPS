@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "offb_node");
     ros::NodeHandle nh;
-    queue <geometry_msgs::PoseStamped> wayPoints;
+    std::queue <geometry_msgs::PoseStamped> wayPoints;
 
     geometry_msgs::PoseStamped pose;
     //First waypoint saved
@@ -34,14 +34,14 @@ int main(int argc, char **argv)
     wayPoints.push(pose);
     //Second waypoint saved
     pose.pose.position.x = 0;
-    pose.pose.position.y = 3;
+    pose.pose.position.y = 1;
     wayPoints.push(pose);
     //Third waypoint saved
-    pose.pose.position.x = 3;
-    pose.pose.position.y = 3;
+    pose.pose.position.x = 1;
+    pose.pose.position.y = 1;
     wayPoints.push(pose);
     //Fourth waypoint saved
-    pose.pose.position.x = 3;
+    pose.pose.position.x = 1;
     pose.pose.position.y = 0;
     wayPoints.push(pose);
     //Fifth waypoint saved

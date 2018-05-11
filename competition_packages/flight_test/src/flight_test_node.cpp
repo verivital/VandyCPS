@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "offb_node");
     ros::NodeHandle nh;
-    queue <geometry_msgs::PoseStamped> wayPoints;
+    std::queue <geometry_msgs::PoseStamped> wayPoints;
 
     geometry_msgs::PoseStamped pose;
     //First waypoint saved
