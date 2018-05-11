@@ -1,4 +1,23 @@
 #!/bin/bash
+sudo mkdir /etc/mavlink-router/config.d
+cat > /etc/mavlink-router/config.d/qgc.conf << EOF1
+[UdpEndpoint wifi]
+Mode = Normal
+Address = 192.168.1.147
+EOF1
+sudo jam -aprogram /etc/fpga/aero-rtf.jam
+cd /etc/aerofc/px4/
+sudo aerofc-update.sh nuttx-aerofc-v1-default.px4
+cd
+sudo apt-get -y install git libusb-1.0-0-dev pkg-config libgtk-3-dev libglfw3-dev cmake
+git clone -b legacy --single-branch https://github.com/IntelRealSense/librealsense.git
+cd librealsense
+mkdir build && cd build
+cmake ../ -DBUILD_EXAMPLES=true -DBUILD_GRAPHICAL_EXAMPLES=true
+make
+sudo make install
+cpp-capture
+cd
 sudo add-apt-repository http://packages.ros.org/ros/ubuntu
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net --recv-key 0xB01FA116
 sudo apt-get update
@@ -19,4 +38,5 @@ fi
 cp -a ~/competition_packages/. ~/catkin_ws/src/
 cd ~/catkin_ws/
 catkin_make
+echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 sudo reboot
