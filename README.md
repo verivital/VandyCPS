@@ -2,12 +2,14 @@
 Hello and welcome to our repository! This repo was built for the Vanderbilt team competitng in the 2018 NSF Student CPS Challenge
 "No robot left behind!" (more information about the competition can be found at this site: [https://cps-vo.org/group/CPSchallenge.](https://cps-vo.org/group/CPSchallenge "2018 NSF Student CPS Challenge")
 
-The team consists of the following members and was led by Nate Hamilton
+The team consists of the following members and was led by Nate Hamilton <br />
 Graduate Students: <br />
+Nate Hamilton <br />
 Ran Hao <br />
 Patrick Musau <br />
 **PLEASE ADD YOUR NAMES** <br />
-Undergraduate Students: <br /> **PLEASE ADD YOUR NAMES**
+Undergraduate Students: <br /> 
+**PLEASE ADD YOUR NAMES**
 
 Hopefully you won't get too lost as I try to explain how this is set up.
 
