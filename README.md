@@ -7,8 +7,11 @@ __Graduate Students:__ <br />
 Nate Hamilton <br />
 Ran Hao <br />
 Patrick Musau <br />
-**PLEASE ADD YOUR NAMES** <br />
+Ruohan Wang <br />
 __Undergraduate Students:__ <br /> 
+Arda Türkmen <br />
+Yufei Yan <br />
+
 **PLEASE ADD YOUR NAMES**
 
 Hopefully you won't get too lost as I try to explain how this is set up.
