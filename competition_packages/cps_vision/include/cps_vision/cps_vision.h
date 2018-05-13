@@ -1,9 +1,11 @@
 /*
  * Software License Agreement (BSD License)
  *
- *  Copyright (c) 2016 Case Western Reserve University
+ *  Copyright (c) 2018 Vanderbilt University
  *
- *	 Ran Hao <rxh349@case.edu>
+ *   Seraphy Wang <ruohan.wang@vanderbilt.edu>
+ *	 Yufei Yan <yufei.yan@vanderbilt.edu>
+ *	 Ran Hao <ran.hao@vanderbilt.edu>
  *
  *  All rights reserved.
  *
@@ -17,7 +19,7 @@
  *	 copyright notice, this list of conditions and the following
  *	 disclaimer in the documentation and/or other materials provided
  *	 with the distribution.
- *   * Neither the name of Case Western Reserve University, nor the names of its
+ *   * Neither the name of Vanderbilt University, nor the names of its
  *	 contributors may be used to endorse or promote products derived
  *	 from this software without specific prior written permission.
  *
@@ -139,6 +141,7 @@ public:
     void getG2();
 
     bool matchPattern(std::string filenames,const cv::Mat &rawImg );
+    bool findShape(const cv::Mat &blueImage);
 
     cv::Mat computeGlobalPose();
 
