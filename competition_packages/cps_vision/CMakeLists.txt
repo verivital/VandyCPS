@@ -23,8 +23,6 @@ include_directories(
 )
 
 catkin_package(CATKIN_DEPENDS message_runtime roscpp rospy std_msgs sensor_msgs geometry_msgs  mavros_msgs cwru_opencv_common)
-# example boost usage
-# find_package(Boost REQUIRED COMPONENTS system thread)
 
 # C++0x support - not quite the same as final C++11!
 # use carefully;  can interfere with point-cloud library
@@ -45,7 +43,9 @@ add_library(cps_vision_lib
 )
 target_link_libraries(cps_vision_lib ${catkin_LIBRARIES})
 add_executable(cps_vision src/cps_vision_main.cpp)
+add_executable(pic_collection src/pic_collection.cpp)
 #the following is required, if desire to link a node in this package with a library created in this same package
 # edit the arguments to reference the named node and named library within this package
 # target_link_library(example my_lib)
 target_link_libraries(cps_vision cps_vision_lib)
+target_link_libraries(pic_collection cps_vision_lib)
