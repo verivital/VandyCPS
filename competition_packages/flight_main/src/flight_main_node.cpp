@@ -17,6 +17,9 @@
 #include <mavros_msgs/CommandTOL.h>
 #include <mavros_msgs/SetMode.h>
 #include <mavros_msgs/State.h>
+#include <sensor_msgs/NavSatFix.h>
+#include <std_msgs/Int32.h>
+#include <std_msgs/Float64MultiArray.h>
 #include <math.h>
 #include <queue>
 
@@ -27,14 +30,14 @@
 #define FLIGHT_ALTITUDE     1.5f    // The altitude
 #define SEARCH_CENTER_LAT   0.00f   // The GPS latitude val at the center of the search ellipse
 #define SEARCH_CENTER_LONG  0.00f   // The GPS longitude val at the center of the search ellipse
-#define DROPOFF_LONGITUDE
-#define DROPOFF_LATITUDE
-#define LANDING_LONGITUDE
-#define LANDING_LATITUDE
+#define DROPOFF_LONGITUDE   0
+#define DROPOFF_LATITUDE    0
+#define LANDING_LONGITUDE   0
+#define LANDING_LATITUDE    0
 #define REPEATED_MSG_THRESHOLD 0.00f // The number of times the target location needs to be duplicated to assume it is true
 #define REPEATED_VAL_THRESHOLD 0.00f // The difference between 2 consecutive locations from IP that determines if it is a repeat
-#define GENERAL_THRESHOLD
-#define PRECISE_THRESHOLD
+#define GENERAL_THRESHOLD   0.5f
+#define PRECISE_THRESHOLD   0.1f
 
 //TODO: Add more hardcoded values
 
@@ -44,8 +47,10 @@
 mavros_msgs::State current_state;
 sensor_msgs::NavSatFix global_pose;
 geometry_msgs::PoseStamped curr_pose;
-std_msgs::Int32 found;
+int found = 0;
 int repeated_location = 0;
+float IP_location_x = 0;
+float IP_location_y = 0;
 
 /************************************************************************
  * All of the helper functions are listed here, but are written out 
@@ -341,7 +346,8 @@ void local_pos_cb(const geometry_msgs::PoseStamped::ConstPtr& msg){
 }
 // For noting whether or not the marker has been found
 void marker_find_cb(const std_msgs::Int32::ConstPtr& msg){
-	found = *msg;
+	std_msgs::Int32 temp = *msg;
+	found = temp.data;
 	return;
 }
 // For recording the locations reported by the image processing node
