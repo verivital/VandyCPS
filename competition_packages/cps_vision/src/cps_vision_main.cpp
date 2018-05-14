@@ -94,10 +94,10 @@ int main(int argc, char **argv) {
     //get image size from camera model, or initialize segmented images,
     cv::Mat raw_image = cv::Mat::zeros(480, 640, CV_8UC3);//this is 3 channel image
 
-    /*
+    /***
      * for debugging and field testing
-    */
-    raw_image = imread("/home/ranhao/ros_ws/src/cps_vision/samples/1"
+     */
+    raw_image = imread("/home/ranhao/ros_ws/src/cps_vision/samples/2"
                                ".jpg",IMREAD_COLOR);
     Size size(480, 640);
     resize(raw_image,raw_image,size);
@@ -109,7 +109,9 @@ int main(int argc, char **argv) {
     cv::waitKey();
     ROS_INFO_STREAM("match "<< match);
 
-    /* start responding to the real camera node */
+    /***
+     * start responding to the real camera node
+     */
 //    image_transport::ImageTransport it(nh);
 //    image_transport::Subscriber img_sub_l = it.subscribe(
 //            "/camera/rgb/image_raw", 1, boost::function<void(const sensor_msgs::ImageConstPtr &)>(boost::bind(newImageCallback, _1, &raw_image)));

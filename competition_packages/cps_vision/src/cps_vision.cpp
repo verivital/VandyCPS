@@ -8,7 +8,7 @@ RNG rng(12345);
 CPSVision::CPSVision(ros::NodeHandle *nodehandle):
         node_handle(*nodehandle){
     projectionMat_subscriber = node_handle.subscribe("/camera/rgb/camera_info", 1, &CPSVision::projectionMatCB, this);
-      pose_subscriber = node_handle.subscribe("/mavros/local_position/odom", 1, &CPSVision::getPose, this);
+    pose_subscriber = node_handle.subscribe("/mavros/local_position/odom", 1, &CPSVision::getPose, this);
 
     raw_image = cv::Mat::zeros(480, 640, CV_8UC3);
 
@@ -21,14 +21,13 @@ CPSVision::CPSVision(ros::NodeHandle *nodehandle):
     R_mat = cv::Mat::zeros(3, 3, CV_64FC1);
     T_mat = cv::Mat::zeros(3, 1, CV_64FC1);
     G1_mat = cv::Mat::eye(4,4, CV_64FC1);
-    G2_mat = cv::Mat::eye(4,4, CV_64FC1);
+    G2_mat = cv::Mat::eye(4,4, CV_64FC1); ////currently not used
 
     Gc_mat = (cv::Mat_<double>(4,4) << 0,   1,   0,   0,
-	    					  1,    0,   0,    0.000,
-	    					  0,   0,   -1,    -0.04,
-	    						0, 	   0,  0, 	1);
+	    					  -1,    0,   0,    0.0,
+	    					  0,   0,   1,    0.04,
+	    						0, 	   0,  0, 	1); //some rough number for translation
 
-    freshCameraInfo = false;
     freshpose = false;
 
 };
@@ -87,7 +86,7 @@ void CPSVision::getG2() {
 
 bool CPSVision::matchPattern(std::string filenames,const cv::Mat &rawImg){
 
-    bool match = false;
+    bool match;
 
     std::vector<cv::Point2f> filtered_pixels;
     cv::Mat position_pixel = cv::Mat::zeros(3, 1, CV_32FC1);
@@ -150,7 +149,7 @@ bool CPSVision::matchPattern(std::string filenames,const cv::Mat &rawImg){
 
     pixel_mat = position_pixel.clone();
     P1_mat = position_pixel.clone();
-    P1_mat = position_pixel.clone();
+    P2_mat = position_pixel.clone();
 
     return match;
 }

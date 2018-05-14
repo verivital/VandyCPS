@@ -3,7 +3,6 @@
 #include <image_transport/image_transport.h>
 #include <cwru_opencv_common/projective_geometry.h>
 #include <cps_vision/cps_vision.h>
-
 #include <ros/package.h>
 
 using namespace cv;
