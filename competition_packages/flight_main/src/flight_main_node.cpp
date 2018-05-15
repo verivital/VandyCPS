@@ -28,19 +28,19 @@
  * Define hard coded values.
  * These can be changed based on the test location.
  ************************************************************************/
-#define FLIGHT_ALTITUDE             1.5f    // The altitude
-#define SEARCH_CENTER_LAT           home.geo.latitude   // The GPS latitude val at the center of the search ellipse
-#define SEARCH_CENTER_LONG          home.geo.longitude   // The GPS longitude val at the center of the search ellipse
-#define DROPOFF_LONGITUDE           home.geo.longitude
-#define DROPOFF_LATITUDE            home.geo.latitude
-#define LANDING_LONGITUDE           home.geo.longitude
-#define LANDING_LATITUDE            home.geo.latitude
+#define FLIGHT_ALTITUDE             5.0    // The altitude
+#define SEARCH_CENTER_LAT           32.2656763   // The GPS latitude val at the center of the search ellipse
+#define SEARCH_CENTER_LONG          -111.2734111   // The GPS longitude val at the center of the search ellipse
+#define DROPOFF_LONGITUDE           -111.2725171
+#define DROPOFF_LATITUDE            32.2650528
+#define LANDING_LONGITUDE           -111.2736179
+#define LANDING_LATITUDE            32.2652491
 #define REPEATED_MSG_THRESHOLD      10 // The number of times the target location needs to be duplicated to assume it is true
 #define REPEATED_VAL_THRESHOLD      0.1 // The difference between 2 consecutive locations from IP that determines if it is a repeat
 #define GENERAL_THRESHOLD           0.5f
 #define PRECISE_THRESHOLD           0.1f
-#define SEARCH_HORIZONTAL_RADIUS    300
-#define SEARCH_VERTICAL_RADIUS      100
+#define SEARCH_HORIZONTAL_RADIUS    20
+#define SEARCH_VERTICAL_RADIUS      20
 //TODO: Add more hardcoded values
 
 /************************************************************************
@@ -94,6 +94,7 @@ int main(int argc, char **argv)
     home.geo.latitude = home.geo.longitude = home.geo.altitude = NAN;
 	
     /* Setup all subscribers. */
+	ROS_INFO("Setting up subscribers.");
     ros::Subscriber state_sub = nh.subscribe<mavros_msgs::State>
             ("/mavros/state", 10, state_cb);
     ros::Subscriber local_pos_sub = nh.subscribe<geometry_msgs::PoseStamped>
@@ -106,6 +107,7 @@ int main(int argc, char **argv)
         ("/navigation/marker_position", 10, marker_position_cb);
 		
     /* Setup all publishers. */
+	ROS_INFO("Setting up publishers.");
     ros::Publisher global_pos_pub = nh.advertise<mavros_msgs::GlobalPositionTarget>
             ("/mavros/setpoint_position/global", 10);
     ros::Publisher local_pos_pub = nh.advertise<geometry_msgs::PoseStamped>
@@ -115,19 +117,28 @@ int main(int argc, char **argv)
     ros::Rate rate(20.0);
 	
     /* Set up service clients. */
+	ROS_INFO("Setting up service clients.");
     ros::ServiceClient takeoff_client = nh.serviceClient<mavros_msgs::CommandTOL>
             ("/mavros/cmd/takeoff");
     ros::ServiceClient arming_client = nh.serviceClient<mavros_msgs::CommandBool>
             ("/mavros/cmd/arming");
     ros::ServiceClient land_client = nh.serviceClient<mavros_msgs::CommandTOL>
             ("/mavros/cmd/land");
+    ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>
+            ("/mavros/set_mode");
+            
 			
     /* Calculate the desired search route. */
+	ROS_INFO("Calculating the search route.");
     std::queue <geometry_msgs::PoseStamped> wayPoints = calculateRoute(SEARCH_HORIZONTAL_RADIUS, SEARCH_VERTICAL_RADIUS);
+	ROS_INFO("Search route calculated.");
+	
     /* Wait for the RC controller to give up control. */
-    while( current_state.mode != "OFFBOARD" && ros::ok()){
+    while( current_state.mode == "POSCTL" && ros::ok()){
         //wait
+		ROS_INFO("Waiting for the mode to be switched to OFFBOARD.");
     }
+	
     /* Establish a safe home position. */
     ros::Subscriber home_sub = nh.subscribe<mavros_msgs::HomePosition>
             ("/mavros/home_position/home", 10, setHomeGeoPointCB);
@@ -137,28 +148,51 @@ int main(int argc, char **argv)
         ros::spinOnce();
         rate.sleep();
     }
+	
     /* Take off! */
+	ROS_INFO("Arming the motors.");
     if(!arm_the_drone(nh, arming_client)){
         ROS_ERROR("Unable to arm the motors");
         ros::shutdown();
         return 1;
     }
+	ROS_INFO("Taking off.");
     if(!takeoff(nh, takeoff_client)){
         ROS_ERROR("Unable to takeoff");
         ros::shutdown();
         return 1;
     }
+	
     /* Make sure the drone gets changed to OFFBOARD mode to continue. */
+	ROS_INFO("Making sure the mode is OFFBOARD");
     ros::Publisher mode_pub = nh.advertise<mavros_msgs::State>
             ("/mavros/state", 10);
-    mavros_msgs::State temp_mode;
-    temp_mode.mode = "OFFBOARD";
-    for(int i = 0; i < 20; i++){
-        mode_pub.publish(temp_mode);
+    //send a few setpoints before starting
+    for(int i = 100; ros::ok() && i > 0; --i){
+        mode_pub.publish(curr_pose);
         ros::spinOnce();
         rate.sleep();
     }
+    //Set mode request
+    mavros_msgs::SetMode offb_set_mode;
+    offb_set_mode.request.custom_mode = "OFFBOARD";
 
+    ros::Time last_request = ros::Time::now();
+
+    // change to offboard mode
+    while( current_state.mode != "OFFBOARD" && (ros::Time::now() - last_request >
+                                                ros::Duration(5.0)))
+    {
+        ROS_INFO(current_state.mode.c_str());
+        if( set_mode_client.call(offb_set_mode) && offb_set_mode.response.mode_sent)
+        {
+            ROS_INFO("Offboard enabled");
+        }
+        last_request = ros::Time::now();
+        mode_pub.publish(curr_pose);
+        ros::spinOnce();
+        rate.sleep();
+    }
 	
     /* Move to the starting location. */
     ROS_INFO("Moving to center of search area: %lf, %lf, %lf", SEARCH_CENTER_LONG, SEARCH_CENTER_LAT, FLIGHT_ALTITUDE);
@@ -169,27 +203,27 @@ int main(int argc, char **argv)
     geometry_msgs::PoseStamped search_center_pose = curr_pose;
 	
     /* Search the area following specified paths until the marker is found. */
-        while(repeated_location <= REPEATED_MSG_THRESHOLD && !wayPoints.empty() && ros::ok()){
-        /* Follow the route until the IP side says they found the marker. */
-                while(!found && !wayPoints.empty() && ros::ok()){
-            if(current_state.mode == "OFFBOARD" && ros::ok()){
-                ROS_INFO("Moving to next waypoint: %lf, %lf, %lf", (search_center_pose.pose.position.x + wayPoints.front().pose.position.x),
-                         (search_center_pose.pose.position.y + wayPoints.front().pose.position.y), FLIGHT_ALTITUDE);
-                move_drone_to_location_local(nh, local_pos_pub, (search_center_pose.pose.position.x + wayPoints.front().pose.position.x),
-                    (search_center_pose.pose.position.y + wayPoints.front().pose.position.y), FLIGHT_ALTITUDE, GENERAL_THRESHOLD);
-                wayPoints.pop();
-            }
-        }
+	while(repeated_location <= REPEATED_MSG_THRESHOLD && !wayPoints.empty() && ros::ok()){
+		/* Follow the route until the IP side says they found the marker. */
+		while(!found && !wayPoints.empty() && ros::ok()){
+			if(current_state.mode == "OFFBOARD" && ros::ok()){
+				ROS_INFO("Moving to next waypoint: %lf, %lf, %lf", (search_center_pose.pose.position.x + wayPoints.front().pose.position.x),
+						 (search_center_pose.pose.position.y + wayPoints.front().pose.position.y), FLIGHT_ALTITUDE);
+				move_drone_to_location_local(nh, local_pos_pub, (search_center_pose.pose.position.x + wayPoints.front().pose.position.x),
+					(search_center_pose.pose.position.y + wayPoints.front().pose.position.y), FLIGHT_ALTITUDE, GENERAL_THRESHOLD);
+				wayPoints.pop();
+			}
+		}
 		
-        /* Follow IP commands until there are no more updates. */
-        while(found && repeated_location <= REPEATED_MSG_THRESHOLD && ros::ok()){
-            if(current_state.mode == "OFFBOARD" && ros::ok()){
-                ROS_INFO("Moving to next specified location: %lf, %lf, %lf", (curr_pose.pose.position.x + IP_location_x),
-                         (curr_pose.pose.position.y + IP_location_y), FLIGHT_ALTITUDE);
-                move_drone_to_location_local(nh, local_pos_pub, (curr_pose.pose.position.x + IP_location_x),
-                    (curr_pose.pose.position.y + IP_location_y), FLIGHT_ALTITUDE, PRECISE_THRESHOLD);
-            }
-        }
+		/* Follow IP commands until there are no more updates. */
+		while(found && repeated_location <= REPEATED_MSG_THRESHOLD && ros::ok()){
+			if(current_state.mode == "OFFBOARD" && ros::ok()){
+				ROS_INFO("Moving to next specified location: %lf, %lf, %lf", (curr_pose.pose.position.x + IP_location_x),
+						 (curr_pose.pose.position.y + IP_location_y), FLIGHT_ALTITUDE);
+				move_drone_to_location_local(nh, local_pos_pub, (curr_pose.pose.position.x + IP_location_x),
+					(curr_pose.pose.position.y + IP_location_y), FLIGHT_ALTITUDE, PRECISE_THRESHOLD);
+			}
+		}
     }
 	
     /* Pick up the marker. */
@@ -314,7 +348,7 @@ void move_drone_to_location_global(const ros::NodeHandle& nh,
     mavros_msgs::GlobalPositionTarget target;
     target.latitude = longitude;
     target.longitude = latitude;
-    target.altitude = altitude;
+    target.altitude = home.geo.altitude + altitude;
     // Until we have reached the location, we keep publishing the desired location
     while(std::abs(global_pose.longitude - longitude) > threshold &&
           std::abs(global_pose.latitude - latitude) > threshold &&
@@ -342,7 +376,7 @@ bool takeoff(const ros::NodeHandle& nh, ros::ServiceClient& sc){
     //Takeoff Service
     mavros_msgs::CommandTOL srv_takeoff;
     ros::Rate rate(20.0);
-    srv_takeoff.request.altitude = FLIGHT_ALTITUDE;
+    srv_takeoff.request.altitude = home.geo.altitude + FLIGHT_ALTITUDE;
     srv_takeoff.request.latitude = home.geo.latitude;
     srv_takeoff.request.longitude = home.geo.longitude;
     //Actually takeoff
