@@ -165,11 +165,9 @@ int main(int argc, char **argv)
 	
     /* Make sure the drone gets changed to OFFBOARD mode to continue. */
 	ROS_INFO("Making sure the mode is OFFBOARD");
-    ros::Publisher mode_pub = nh.advertise<mavros_msgs::State>
-            ("/mavros/state", 10);
     //send a few setpoints before starting
     for(int i = 100; ros::ok() && i > 0; --i){
-        mode_pub.publish(curr_pose);
+        local_pos_pub.publish(curr_pose);
         ros::spinOnce();
         rate.sleep();
     }
@@ -189,15 +187,15 @@ int main(int argc, char **argv)
             ROS_INFO("Offboard enabled");
         }
         last_request = ros::Time::now();
-        mode_pub.publish(curr_pose);
+        local_pos_pub.publish(curr_pose);
         ros::spinOnce();
         rate.sleep();
     }
 	
     /* Move to the starting location. */
-    ROS_INFO("Moving to center of search area: %lf, %lf, %lf", SEARCH_CENTER_LONG, SEARCH_CENTER_LAT, FLIGHT_ALTITUDE);
-    move_drone_to_location_global(nh, global_pos_pub, SEARCH_CENTER_LONG, SEARCH_CENTER_LAT, FLIGHT_ALTITUDE, GENERAL_THRESHOLD);
-    //move_drone_to_location_global(nh, global_pos_pub, home.geo.longitude, home.geo.latitude, FLIGHT_ALTITUDE, GENERAL_THRESHOLD); //for sim
+    ROS_INFO("Moving to center of search area: %lf, %lf, %lf", SEARCH_CENTER_LONG, SEARCH_CENTER_LAT, home.geo.altitude + FLIGHT_ALTITUDE);
+    move_drone_to_location_global(nh, global_pos_pub, SEARCH_CENTER_LONG, SEARCH_CENTER_LAT, home.geo.altitude + FLIGHT_ALTITUDE, GENERAL_THRESHOLD);
+    //move_drone_to_location_global(nh, global_pos_pub, home.geo.longitude, home.geo.latitude, home.geo.altitude + FLIGHT_ALTITUDE, GENERAL_THRESHOLD); //for sim
 	
     // Get the local position of the ellipse center for route following to work
     geometry_msgs::PoseStamped search_center_pose = curr_pose;
@@ -230,17 +228,17 @@ int main(int argc, char **argv)
     pick_up_marker(nh);
 	
     /* Fly to the drop off location. */
-    ROS_INFO("Moving to dropoff area: %lf, %lf, %lf", DROPOFF_LONGITUDE, DROPOFF_LATITUDE, FLIGHT_ALTITUDE);
-    move_drone_to_location_global(nh, global_pos_pub, DROPOFF_LONGITUDE, DROPOFF_LATITUDE, FLIGHT_ALTITUDE, GENERAL_THRESHOLD);
-    //move_drone_to_location_global(nh, global_pos_pub, home.geo.longitude, home.geo.latitude, FLIGHT_ALTITUDE, GENERAL_THRESHOLD); //for sim
+    ROS_INFO("Moving to dropoff area: %lf, %lf, %lf", DROPOFF_LONGITUDE, DROPOFF_LATITUDE, home.geo.altitude + FLIGHT_ALTITUDE);
+    move_drone_to_location_global(nh, global_pos_pub, DROPOFF_LONGITUDE, DROPOFF_LATITUDE, home.geo.altitude + FLIGHT_ALTITUDE, GENERAL_THRESHOLD);
+    //move_drone_to_location_global(nh, global_pos_pub, home.geo.longitude, home.geo.latitude, home.geo.altitude + FLIGHT_ALTITUDE, GENERAL_THRESHOLD); //for sim
 	
     /* Execute drop off manuever. */
     drop_off_marker(nh);
 	
     /* Fly to landing location. */
-    ROS_INFO("Moving to landing area: %lf, %lf, %lf", LANDING_LONGITUDE, LANDING_LATITUDE, FLIGHT_ALTITUDE);
-    move_drone_to_location_global(nh, global_pos_pub, LANDING_LONGITUDE, LANDING_LATITUDE, FLIGHT_ALTITUDE, GENERAL_THRESHOLD);
-    //move_drone_to_location_global(nh, global_pos_pub, home.geo.longitude, home.geo.latitude, FLIGHT_ALTITUDE, GENERAL_THRESHOLD); //for sim
+    ROS_INFO("Moving to landing area: %lf, %lf, %lf", LANDING_LONGITUDE, LANDING_LATITUDE, home.geo.altitude + FLIGHT_ALTITUDE);
+    move_drone_to_location_global(nh, global_pos_pub, LANDING_LONGITUDE, LANDING_LATITUDE, home.geo.altitude + FLIGHT_ALTITUDE, GENERAL_THRESHOLD);
+    //move_drone_to_location_global(nh, global_pos_pub, home.geo.longitude, home.geo.latitude, home.geo.altitude + FLIGHT_ALTITUDE, GENERAL_THRESHOLD); //for sim
 	
     /* Land the drone. */
     if(!land_the_drone(nh, land_client)){
@@ -348,7 +346,7 @@ void move_drone_to_location_global(const ros::NodeHandle& nh,
     mavros_msgs::GlobalPositionTarget target;
     target.latitude = longitude;
     target.longitude = latitude;
-    target.altitude = home.geo.altitude + altitude;
+    target.altitude = altitude;
     // Until we have reached the location, we keep publishing the desired location
     while(std::abs(global_pose.longitude - longitude) > threshold &&
           std::abs(global_pose.latitude - latitude) > threshold &&
