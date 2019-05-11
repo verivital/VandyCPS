@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5af087c3-02d6-4e92-9828-76207c59a5b2" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/cps_vision.iml" afterPath="$PROJECT_DIR$/.idea/cps_vision.iml" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change beforePath="$PROJECT_DIR$/frames.png" afterPath="$PROJECT_DIR$/frames.png" />
+      <change beforePath="$PROJECT_DIR$/include/cps_vision/cps_vision.h" afterPath="$PROJECT_DIR$/include/cps_vision/cps_vision.h" />
+      <change beforePath="$PROJECT_DIR$/object.jpg" afterPath="$PROJECT_DIR$/object.jpg" />
+      <change beforePath="$PROJECT_DIR$/package.xml" afterPath="$PROJECT_DIR$/package.xml" />
+      <change beforePath="$PROJECT_DIR$/samples/0.jpg" afterPath="$PROJECT_DIR$/samples/0.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/1.jpg" afterPath="$PROJECT_DIR$/samples/1.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/10.jpg" afterPath="$PROJECT_DIR$/samples/10.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/11.jpg" afterPath="$PROJECT_DIR$/samples/11.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/12.jpg" afterPath="$PROJECT_DIR$/samples/12.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/13.jpg" afterPath="$PROJECT_DIR$/samples/13.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/14.jpg" afterPath="$PROJECT_DIR$/samples/14.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/15.jpg" afterPath="$PROJECT_DIR$/samples/15.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/16.jpg" afterPath="$PROJECT_DIR$/samples/16.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/17.jpg" afterPath="$PROJECT_DIR$/samples/17.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/18.jpg" afterPath="$PROJECT_DIR$/samples/18.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/19.jpg" afterPath="$PROJECT_DIR$/samples/19.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/2.jpg" afterPath="$PROJECT_DIR$/samples/2.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/3.jpg" afterPath="$PROJECT_DIR$/samples/3.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/4.jpg" afterPath="$PROJECT_DIR$/samples/4.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/5.jpg" afterPath="$PROJECT_DIR$/samples/5.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/6.jpg" afterPath="$PROJECT_DIR$/samples/6.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/7.jpg" afterPath="$PROJECT_DIR$/samples/7.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/8.jpg" afterPath="$PROJECT_DIR$/samples/8.jpg" />
+      <change beforePath="$PROJECT_DIR$/samples/9.jpg" afterPath="$PROJECT_DIR$/samples/9.jpg" />
+      <change beforePath="$PROJECT_DIR$/src/cps_vision.cpp" afterPath="$PROJECT_DIR$/src/cps_vision.cpp" />
+      <change beforePath="$PROJECT_DIR$/src/cps_vision_main.cpp" afterPath="$PROJECT_DIR$/src/cps_vision_main.cpp" />
+      <change beforePath="$PROJECT_DIR$/src/pic_collection.cpp" afterPath="$PROJECT_DIR$/src/pic_collection.cpp" />
+    </list>
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="cps_vision_main.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cps_vision_main.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="371">
+              <caret line="132" column="109" lean-forward="false" selection-start-line="132" selection-start-column="109" selection-end-line="132" selection-end-column="109" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cps_vision.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cps_vision.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="395">
+              <caret line="143" column="105" lean-forward="false" selection-start-line="143" selection-start-column="105" selection-end-line="143" selection-end-column="105" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pic_collection.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/pic_collection.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="358">
+              <caret line="56" column="24" lean-forward="true" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cps_vision.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/cps_vision/cps_vision.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="140" column="71" lean-forward="false" selection-start-line="140" selection-start-column="71" selection-end-line="140" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>P</find>
+      <find>C_mat</find>
+      <find>O_mat</find>
+      <find>G1</find>
+      <find>findTarget</find>
+      <find>new</find>
+      <find>new2</find>
+      <find>P1_mat</find>
+      <find>marker_data</find>
+      <find>match</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>orientation</replace>
+      <replace>O</replace>
+      <replace>O_mat</replace>
+      <replace>R_mat</replace>
+      <replace>G2</replace>
+      <replace>marker_exist</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/IPlImage.h" />
+        <option value="$PROJECT_DIR$/include/cps_vision/cps_vision.h" />
+        <option value="$PROJECT_DIR$/src/cps_vision_main.cpp" />
+        <option value="$PROJECT_DIR$/src/cps_vision.cpp" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1280" />
+    <option name="height" value="800" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="cps_vision" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="cps_vision" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cps_vision" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="cps_vision" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cps_vision" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="cps_vision" type="462c0819:PsiDirectoryNode" />
+              <item name="include" type="462c0819:PsiDirectoryNode" />
+              <item name="cps_vision" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cps_vision" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="cps_vision" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="SwiftSettings" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="GO_FMT" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Build All">
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+      <envs />
+    </configuration>
+    <configuration name="cps_vision" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="cps_vision" TARGET_NAME="cps_vision" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="cps_vision" RUN_TARGET_NAME="cps_vision">
+      <envs />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
+      <item index="1" class="java.lang.String" itemvalue="Application.cps_vision" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5af087c3-02d6-4e92-9828-76207c59a5b2" name="Default" comment="" />
+      <created>1525880737499</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1525880737499</updated>
+      <workItem from="1525880738634" duration="45732000" />
+      <workItem from="1526003921726" duration="26674000" />
+      <workItem from="1526580664166" duration="727000" />
+    </task>
+    <task id="LOCAL-00001" summary="version1_5/9">
+      <created>1525901884630</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1525901884630</updated>
+    </task>
+    <task id="LOCAL-00002" summary="version1_5/9">
+      <created>1526055305839</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1526055305839</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="73133000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15885623" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997955" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="version1_5/9" />
+    <option name="LAST_COMMIT_MESSAGE" value="version1_5/9" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="8" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/cps_vision_main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cps_vision.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1445">
+          <caret line="85" column="27" lean-forward="false" selection-start-line="85" selection-start-column="27" selection-end-line="85" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/cps_vision/cps_vision.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2142">
+          <caret line="126" column="17" lean-forward="true" selection-start-line="126" selection-start-column="12" selection-end-line="126" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cps_vision_main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cps_vision.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="972">
+          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="63" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/cps_vision/cps_vision.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IPlImage.h" />
+    <entry file="file://$PROJECT_DIR$/src/IPlImage.cpp" />
+    <entry file="file://$PROJECT_DIR$/new3.jpg" />
+    <entry file="file://$PROJECT_DIR$/new1.jpg" />
+    <entry file="file://$PROJECT_DIR$/new2.jpg" />
+    <entry file="file://$PROJECT_DIR$/new10.jpg" />
+    <entry file="file://$PROJECT_DIR$/include/cps_vision/cps_vision.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="140" column="71" lean-forward="false" selection-start-line="140" selection-start-column="71" selection-end-line="140" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cps_vision_main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="132" column="109" lean-forward="false" selection-start-line="132" selection-start-column="109" selection-end-line="132" selection-end-column="109" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cps_vision.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="143" column="105" lean-forward="false" selection-start-line="143" selection-start-column="105" selection-end-line="143" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pic_collection.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="56" column="24" lean-forward="true" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

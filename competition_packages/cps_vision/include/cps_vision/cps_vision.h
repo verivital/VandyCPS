@@ -1,11 +1,9 @@
 /*
  * Software License Agreement (BSD License)
  *
- *  Copyright (c) 2018 Vanderbilt University
+ *  Copyright (c) 2016 Case Western Reserve University
  *
- *   Seraphy Wang <ruohan.wang@vanderbilt.edu>
- *	 Yufei Yan <yufei.yan@vanderbilt.edu>
- *	 Ran Hao <ran.hao@vanderbilt.edu>
+ *	 Ran Hao <rxh349@case.edu>
  *
  *  All rights reserved.
  *
@@ -19,7 +17,7 @@
  *	 copyright notice, this list of conditions and the following
  *	 disclaimer in the documentation and/or other materials provided
  *	 with the distribution.
- *   * Neither the name of Vanderbilt University, nor the names of its
+ *   * Neither the name of Case Western Reserve University, nor the names of its
  *	 contributors may be used to endorse or promote products derived
  *	 from this software without specific prior written permission.
  *
@@ -86,19 +84,26 @@ private:
     ros::Subscriber pose_subscriber;
 
     /**
-     * @brief get Projection matrix from subsriber
+     * @brief get P_right from subsriber
      * @param projectionRight
      */
     void projectionMatCB(const sensor_msgs::CameraInfo::ConstPtr &projectionRight);
 
+    /*
+     * What is this?
+     */
+    cv::Mat projection_mat;
+
+    bool freshCameraInfo;
+
     cv::Mat G1_mat;
     cv::Mat G2_mat;
-	cv::Mat Gc_mat; ////the transformation matrix of the world frame relative to the camera frame
+	cv::Mat Gc_mat;
 
     cv::Mat R_mat;
     cv::Mat T_mat;
     /**
-     * The camera projection matrix.
+     * The intrinsic camera matrix.
      */
     cv::Mat C_mat;
 
@@ -121,55 +126,22 @@ public:
 	 */
 	~CPSVision();
 
-    /**
-     * The signal when drone's pose is received and ready
-     */
     bool freshpose;
 
     cv::Mat P1_mat;
     cv::Mat P2_mat;
     cv::Mat pixel_mat;  //use this for the relative position computation
 
-    /**
-     * @brief - The pose_subscriber callback function for receiving the pose of the drone
-     * @param pose
-     */
     void getPose(const nav_msgs::Odometry::ConstPtr &pose);
 
-    /**
-     * @brief - Get the rotation and translation of the drone according to the Odometer or world frame, reported from pose_subscriber
-     */
     void getG1();
+
     void getG2();
 
-    /**
-     * @brief - The feature matching function for using template image to find the target in scene
-     * (https://docs.opencv.org/3.0-beta/doc/tutorials/features2d/feature_detection/feature_detection.html)
-     * @param - filenames : the name of the template
-     * @param - rawImg : the image of the query image
-     * @return - match : if target is found
-     * */
-    bool matchPattern(std::string filenames,const cv::Mat &rawImg );
+    bool matchPattern(std::string filenames,const cv::Mat &rawImg,int i );
 
-    /**
-     * @brief - The shape finding using contour extraction and polygon matching
-     * (https://docs.opencv.org/2.4/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html?highlight=findcontours#findcontours)
-     * @param - blueImage
-     * @return - if target polygon shape is found
-     */
-    bool findShape(const cv::Mat &blueImage);
-
-    /**
-     * @brief - Compute the global position of the target (currently abandoned....didn't have time)
-     * @return
-     */
     cv::Mat computeGlobalPose();
 
-    /**
-     * @brief - compute the relative position (X, Y) using the height (Z) of the drone according to the target, then transform this position
-     * into the drone's frame. Please make sure the camera-drone transformation is correct
-     * @return - the 2D relative position of the target according to the drone's frame
-     */
     cv::Point2d getRelativePosition();
 };
 

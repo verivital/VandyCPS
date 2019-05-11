@@ -16,9 +16,6 @@ image_pipeline: https://github.com/ros-perception/image_pipeline (for calibratio
 
 ## Run vision node:
 `rosrun cps_vision cps_vision`
-This node publishes two topics:
-- /navigation/marker_find : Int32 (indicating if target is found (1) or not (0))
-- /navigation/marker_position : Float64MultiArray (relative position (x, y) in drone's body frame)
 
 ## Run data collection node:
 `rosrun cps_vision pic_collection`

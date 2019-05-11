@@ -3,12 +3,10 @@
 
 using namespace std;
 using namespace cv;
-RNG rng(12345);
-
 CPSVision::CPSVision(ros::NodeHandle *nodehandle):
         node_handle(*nodehandle){
     projectionMat_subscriber = node_handle.subscribe("/camera/rgb/camera_info", 1, &CPSVision::projectionMatCB, this);
-    pose_subscriber = node_handle.subscribe("/mavros/local_position/odom", 1, &CPSVision::getPose, this);
+      pose_subscriber = node_handle.subscribe("/mavros/local_position/odom", 1, &CPSVision::getPose, this);
 
     raw_image = cv::Mat::zeros(480, 640, CV_8UC3);
 
@@ -21,13 +19,14 @@ CPSVision::CPSVision(ros::NodeHandle *nodehandle):
     R_mat = cv::Mat::zeros(3, 3, CV_64FC1);
     T_mat = cv::Mat::zeros(3, 1, CV_64FC1);
     G1_mat = cv::Mat::eye(4,4, CV_64FC1);
-    G2_mat = cv::Mat::eye(4,4, CV_64FC1); ////currently not used
+    G2_mat = cv::Mat::eye(4,4, CV_64FC1);
 
     Gc_mat = (cv::Mat_<double>(4,4) << 0,   1,   0,   0,
-	    					  -1,    0,   0,    0.0,
-	    					  0,   0,   1,    0.04,
-	    						0, 	   0,  0, 	1); //some rough number for translation
+	    					  1,    0,   0,    0.000,
+	    					  0,   0,   -1,    -0.04,
+	    						0, 	   0,  0, 	1);
 
+    freshCameraInfo = false;
     freshpose = false;
 
 };
@@ -84,9 +83,9 @@ void CPSVision::getG2() {
 }
 
 
-bool CPSVision::matchPattern(std::string filenames,const cv::Mat &rawImg){
+bool CPSVision::matchPattern(std::string filenames,const cv::Mat &rawImg, int z){
 
-    bool match;
+    bool match = false;
 
     std::vector<cv::Point2f> filtered_pixels;
     cv::Mat position_pixel = cv::Mat::zeros(3, 1, CV_32FC1);
@@ -138,46 +137,23 @@ bool CPSVision::matchPattern(std::string filenames,const cv::Mat &rawImg){
             position_pixel.at<float>(2,0) = 1;
             match = true;
         }else{match = false;}
-
         cv::Mat match_mat;
         cv::drawMatches(targetImg, keypoints_1,rawImg,keypoints_2,matches_filtered,match_mat);
-        imshow("matches image", match_mat);
-//        cv::waitKey(10);
+        stringstream i_string;
+        i_string << z;
+        std::string img_path = "/home/vaero/catkin-ws/src/cps_vision/samples/matched"+ i_string.str() + ".jpg";
+        imwrite(img_path, match_mat);
+        //cv::imshow("matches image", match_mat);
+        //cv::waitKey();
     }else{
         match = false;
     }
 
     pixel_mat = position_pixel.clone();
     P1_mat = position_pixel.clone();
-    P2_mat = position_pixel.clone();
+    P1_mat = position_pixel.clone();
 
     return match;
-}
-
-bool CPSVision::findShape(const cv::Mat &blueImage){
-    vector<vector<Point> > contours;
-    vector<Point> approx;
-    vector<Vec4i> hierarchy;
-    cv::findContours(blueImage, contours,  hierarchy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
-    cv::Mat drawing = cv::Mat::zeros(480, 640, CV_8UC3);
-    for( int i = 0; i< contours.size(); i++ )
-    {
-        Scalar color = Scalar( rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
-        drawContours( drawing, contours, i, color, 2, 8, hierarchy, 0, Point() );
-    }
-    imshow("Draw", drawing);
-//    waitKey(10);
-    for(int i = 0; i < contours.size();i++){
-        ROS_INFO_STREAM("CONTOUR:"<<contours.size());
-        approxPolyDP(cv::Mat(contours[i]),approx, cv::arcLength(cv::Mat(contours[i]),true)*0.01, true);
-        if(approx.size() > 10 && approx.size() <= 14){
-            ROS_INFO_STREAM("Cross!" << approx.size());
-            return true;
-        }
-    }
-
-    ROS_INFO_STREAM("NOT Cross! The number is:" << approx.size());
-    return false;
 }
 
 

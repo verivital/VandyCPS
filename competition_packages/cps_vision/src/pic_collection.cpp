@@ -3,8 +3,10 @@
 #include <image_transport/image_transport.h>
 #include <cwru_opencv_common/projective_geometry.h>
 #include <cps_vision/cps_vision.h>
-#include <ros/package.h>
 
+#include <ros/package.h>
+#include <sstream>
+#include <iostream>
 using namespace cv;
 using namespace std;
 using namespace cv_projective;
@@ -31,6 +33,7 @@ int main(int argc, char **argv) {
     ros::NodeHandle nh;
 
     CPSVision CPSVision(&nh);
+    ros::Duration(2).sleep(); //wait for the callbacks to start
 
     freshImage = false;
 
@@ -43,22 +46,26 @@ int main(int argc, char **argv) {
     image_transport::Subscriber img_sub_l = it.subscribe(
             "/camera/rgb/image_raw", 1, boost::function<void(const sensor_msgs::ImageConstPtr &)>(boost::bind(newImageCallback, _1, &raw_image)));
 
-    ROS_INFO("---- done subscribe, wait 10s to start collecting -----");
-    ros::Duration(10).sleep();
+    ROS_INFO("---- done subscribe -----");
+    ros::Duration(1).sleep();
     for (int i = 0; i < 20; ++i)
     {
         stringstream i_string;
         i_string << i;
-        std::string img_path = cps_vision_pkg + "/samples/" + i_string.str() + ".jpg";
+        std::string img_path = "/home/vaero/catkin-ws/src/cps_vision/samples/"+ i_string.str() + ".jpg";
+        ROS_INFO_STREAM("path: "<<img_path);
         ros::spinOnce();
         // if camera is ready, track segmented image
         if (freshImage) {
             cv::cvtColor(raw_image, raw_image, CV_BGR2RGB);
+            //imshow("IMAGE",raw_image);
+	    cv::waitKey();
             imwrite(img_path, raw_image);
 
             freshImage = false;
+	    ROS_INFO_STREAM("Finish picture: " << i);
         }
-        ROS_INFO_STREAM("Finish picture: " << i);
+        
         ros::Duration(3).sleep();
     }
 

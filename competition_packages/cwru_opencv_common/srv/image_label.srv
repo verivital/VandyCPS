@@ -1,0 +1,11 @@
+# This service is meant to label an image using user clicks.
+
+#Call
+
+#Number of requested points.
+int32 requestedPoints
+
+---
+
+#list of response points:
+geometry_msgs/Polygon pointsResp

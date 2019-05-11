@@ -1,0 +1,17 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+
+  <!-- Camera Packages --> 
+  <node pkg="cps_vision" type="cps_vision_main" name="cps_vision_main">
+	
+  </node>
+  
+  <!-- Navigation Package -->
+  <node pkg="flight_main" type="flight_main_node" name="flight_main_node">
+  </node>
+  
+  <!-- Mavros Package -->
+  <node pkg="mavros" type="mavros_node" name="mavros" args="_fcu_url:=tcp://127.0.0.1:5760 _system_id:=2" output="screen"/>
+
+  <include file="$(find realsense_camera)/launch/r200_nodelet_rgbd.launch"/>
+ </launch>
