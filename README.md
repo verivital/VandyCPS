@@ -17,10 +17,6 @@ Arda Türkmen (participated in 2018) <br />
 Yufei Yan (participated in 2018) <br />
 
 
-**PLEASE ADD YOUR NAMES**
-
-Hopefully you won't get too lost as I try to explain how this is set up.
-
 ## Organization
 The repo is split up into 2 different folders. 
 1. The folder _setup_ contains bash scripts and a make file for setting up the Intel Aero RTF drone from a fresh Ubuntu distro. For more information about that, scroll down the the __Setup__ section.
