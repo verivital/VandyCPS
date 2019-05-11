@@ -1,16 +1,21 @@
 # VandyCPS
-Hello and welcome to our repository! This repo was built for the Vanderbilt team competitng in the 2018 NSF Student CPS Challenge
-"No robot left behind!" (more information about the competition can be found at this site: [https://cps-vo.org/group/CPSchallenge.](https://cps-vo.org/group/CPSchallenge "2018 NSF Student CPS Challenge")
+Hello and welcome to our repository! This repo was built for the Vanderbilt team competitng in the 2019 NSF Student CPS Challenge
+"No robot left behind!" (more information about the competition can be found at this site: [https://cps-vo.org/group/CPSchallenge.](https://cps-vo.org/group/CPSchallenge "2019 NSF Student CPS Challenge")
 
 The team consists of the following members led by Nate Hamilton <br />
 __Graduate Students:__ <br />
 Nate Hamilton <br />
-Ran Hao <br />
+Diego Manzanas Lopez <br />
 Patrick Musau <br />
-Ruohan Wang <br />
+Ran Hao (participated in 2018)<br />
+Ruohan Wang (participated in 2018) <br />
+
 __Undergraduate Students:__ <br /> 
-Arda Türkmen <br />
-Yufei Yan <br />
+Diandry Rutayisire <br />
+William Wu <br />
+Arda Türkmen (participated in 2018) <br />
+Yufei Yan (participated in 2018) <br />
+
 
 **PLEASE ADD YOUR NAMES**
 
