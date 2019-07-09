@@ -1,0 +1,71 @@
+version: '2.3'
+
+#launch all the containers for the vandyCPS simulation
+services: 
+  #create a rosmaster so that all containers can talk to each other properly
+  rosmaster: 
+    image: drone_test
+    build: .
+    depends_on: 
+      - "px4"
+    container_name: rosmaster
+    command: /bin/bash -c 'source /opt/ros/kinetic/setup.bash && roscore'
+#launch the f1tenth container and display the gazebo simulation using nvidia drivers
+  px4:
+    image: drone_test
+    build: .
+    container_name: px4
+    runtime: nvidia
+    tty: true
+    #make sure that this container is started after the rosmaster by using the depends clause
+    #declare environment variables need to display the GUI applications as well as getting the ros containers to talk to each other
+    environment:
+      - DISPLAY
+      - QT_X11_NO_MITSHM=1
+      - "ROS_HOSTNAME=px4"
+      - "ROS_MASTER_URI=http://rosmaster:11311" 
+    #mount the existing host folders in the Docker container so that we don't have to rebuild the image to compile the source images
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ros-logs:/root/.ros/
+      - gazebo-files:/root/.gazebo/
+      - px4-logs:/home/Firmware/build/px4_sitl_default/tmp/rootfs
+      - px4-build:/home/Firmware/build
+    command: /bin/bash -c 'cd Firmware && make px4_sitl gazebo'
+
+  mavros: 
+    image: drone_test
+    build: .
+    container_name: mavros
+    depends_on: 
+      - "rosmaster"
+      - "px4"
+    tty: true
+    environment:
+      - "ROS_HOSTNAME=mavros"
+      - "ROS_MASTER_URI=http://rosmaster:11311"
+    command: /bin/bash -c 'source /opt/ros/kinetic/setup.bash && roslaunch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"'
+
+
+  #launch keyboard node
+  keyboard: 
+    image: drone_test
+    build: .
+    container_name: keyboard
+    depends_on: 
+      - "rosmaster"
+      - "px4"
+      - "mavros"
+    stdin_open: true
+    tty: true
+    environment:
+      - "ROS_HOSTNAME=keyboard"
+      - "ROS_MASTER_URI=http://rosmaster:11311"
+    command: /bin/bash -c 'source /opt/ros/kinetic/setup.bash && bash'
+
+#declare names for the gazebo log files and ros log files which will be handled by docker
+volumes:
+  ros-logs:
+  gazebo-files:
+  px4-logs:
+  px4-build: 
